@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Settings - EdTech Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            background-color: white;
+            margin: 30px auto; /* Center the container */
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            width: 100%; /* Changed from 80% to 90% for wider container */
+            max-width: 1500px; /* Increased max-width to 1500px for larger screens */
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #4B0082;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: #333;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 1rem;
+            width: 100%; /* Full-width form inputs */
+        }
+
+        select.form-control {
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        button.btn {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        button.btn:hover {
+            background-color: #E64A19;
+        }
+
+        footer {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>User Settings</h1>
+    </header>
+
+    <main class="container">
+        <h2>Account Settings</h2>
+        <form>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" value="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter new password" required>
+            </div>
+            <div class="form-group">
+                <label for="notification">Notifications:</label>
+                <select class="form-control" id="notification">
+                    <option value="all">All</option>
+                    <option value="none">None</option>
+                    <option value="important">Important Only</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 EdTech Platform. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

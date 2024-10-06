@@ -1,0 +1,399 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson - EdTech Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            flex: 1;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 3;
+        }
+
+        .notes {
+            flex: 1;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-left: 20px;
+            height: 400px;
+            width: 300px;
+            overflow-y: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .notes h3 {
+            color: #4B0082;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #4B0082;
+            padding-bottom: 10px;
+        }
+        #learning-video{
+            max-width: 50%;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #4B0082;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .video-container {
+            margin: 20px 0;
+            padding: 10px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-description {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+        }
+
+        /* Dropdown styles */
+        .language-dropdown {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .language-dropdown select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .language-dropdown select:hover {
+            border-color: #4B0082;
+        }
+
+        /* Updated Styles for Next Video Links and Reference Book Links */
+        .next-video-links {
+            margin-top: 20px;
+        }
+
+        .next-video-links a,
+        .reference-book a {
+            display: block;
+            color: #4B0082;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .next-video-links a:hover,
+        .reference-book a:hover {
+            text-decoration: underline;
+            background-color: #E1BEE7;
+            color: #4B0082;
+        }
+
+        .reference-book {
+            margin-top: 40px;
+        }
+
+        /* Button styles */
+        .btn-take-quiz {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn-take-quiz:hover {
+            background-color: #5A2E9A;
+        }
+
+        /* New Button for Take Projects */
+        .btn-take-projects {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn-take-projects:hover {
+            background-color: #5A2E9A;
+        }
+
+        /* Sign Language Video Styles */
+        .sign-language-video {
+            display: none;
+            margin-top: 10px;
+            width: 40%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .sign-language-video video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Accessibility button styles */
+        .accessibility-options {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .accessibility-options button {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+
+        .accessibility-options button:hover {
+            background-color: #5A2E9A;
+        }
+
+        .accessibility-options button.active {
+            background-color: #6A1B9A; /* Active state color */
+        }
+
+        /* Notes text area styles */
+        .notes textarea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            line-height: 1.5;
+            resize: none; /* Disable resizing */
+        }
+    </style>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_API_KEY"></script>
+    <script>
+        let screenReaderEnabled = false;
+        let signLanguageEnabled = false;
+
+        function handleLanguageChange(language) {
+            if (language === 'ta') {
+                // Redirect to lesson.html when Tamil is selected
+                window.location.href = 'lesson.html';
+            } else {
+                translatePage(language);
+            }
+        }
+
+        async function translatePage(language) {
+            const elementsToTranslate = document.body.querySelectorAll('*:not(script):not(style):not(textarea):not(input):not(button)');
+            const apiKey = 'YOUR_OPENAI_API_KEY';
+
+            for (let element of elementsToTranslate) {
+                if (element.innerText.trim() !== '' && !element.querySelectorAll('*').length) {
+                    try {
+                        const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${apiKey}`
+                            },
+                            body: JSON.stringify({
+                                prompt: `Translate the following text to ${language}:\n\n"${element.innerText}"`,
+                                max_tokens: 1000,
+                                temperature: 0.7,
+                            })
+                        });
+
+                        const result = await response.json();
+                        if (result.choices && result.choices.length > 0) {
+                            element.innerText = result.choices[0].text.trim();
+                        }
+                    } catch (error) {
+                        console.error('Error translating text:', error);
+                    }
+                }
+            }
+        }
+
+        async function startScreenReader() {
+            screenReaderEnabled = !screenReaderEnabled;
+            const screenReaderButton = document.getElementById('screen-reader-btn');
+            if (screenReaderEnabled) {
+                screenReaderButton.classList.add('active');
+                document.body.addEventListener('click', screenReaderHandler);
+            } else {
+                screenReaderButton.classList.remove('active');
+                document.body.removeEventListener('click', screenReaderHandler);
+                responsiveVoice.cancel();
+            }
+        }
+
+        function screenReaderHandler(event) {
+            if (event.target && event.target.innerText) {
+                responsiveVoice.speak(event.target.innerText);
+            }
+        }
+
+        function toggleCaptions() {
+            const captions = document.querySelectorAll('video track');
+            captions.forEach(track => {
+                track.mode = track.mode === 'showing' ? 'hidden' : 'showing';
+            });
+        }
+
+        function toggleSignLanguage() {
+            signLanguageEnabled = !signLanguageEnabled;
+            const signLanguageVideo = document.getElementById('sign-language-video');
+            if (signLanguageEnabled) {
+                signLanguageVideo.style.display = 'block';
+            } else {
+                signLanguageVideo.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the EdTech Platform</h1>
+    </header>
+    <main class="container">
+        <div class="content">
+            <div class="language-dropdown">
+                <label for="language-select">Select Language:</label>
+                <select id="language-select" onchange="handleLanguageChange(this.value)">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="hi">Hindi</option>
+                    <option value="ta" action="{% url 'lessont' %}">Tamil</option>
+                    <option value="zh">Chinese</option>
+                </select>
+            </div>
+            <h2>Introduction to Programming</h2>
+            <div class="video-container">
+                <video id="learning-video" controls aria-labelledby="video-description">
+                    <source src="{% static 'VPy.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-description" id="video-description">This video provides an introduction to programming, covering basic concepts and language syntax.</div>
+                <button class="btn-take-quiz" onclick="location.href='{% url 'test' %}'">Take Quiz</button>
+                <button class="btn-take-projects" onclick="location.href='{% url 'projects' %}'">Take Projects</button>
+            </div>
+            <div class="next-video-links">
+                <h3>Next Videos:</h3>
+                <a href="lesson2.html">Lesson 2: Data Types</a>
+                <a href="lesson3.html">Lesson 3: Control Structures</a>
+            </div>
+            <div class="reference-book">
+                <h3>Reference Books:</h3>
+                <a href="book1.html">Programming Basics</a>
+                <a href="book2.html">Advanced Programming Concepts</a>
+            </div>
+            <div class="accessibility-options">
+                <button id="screen-reader-btn" onclick="startScreenReader()">Toggle Screen Reader</button>
+                <button id="captions-btn" onclick="toggleCaptions()">Toggle Captions</button>
+                <button id="sign-language-btn" onclick="toggleSignLanguage()">Toggle Sign Language Video</button>
+            </div>
+            <div class="sign-language-video" id="sign-language-video" aria-hidden="true">
+                <video controls>
+                    <source src="{% static 'sign.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="notes">
+            <h3>Notes</h3>
+            <textarea placeholder="Type your notes here..."></textarea>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 EdTech Platform. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+    function handleLanguageChange(selectedLanguage) {
+        if (selectedLanguage === 'ta') {
+            // Redirect to the Tamil lesson page
+            window.location.href = "{% url 'lessont' %}";  // Make sure to replace 'lessont' with your actual URL name
+        } else {
+            // Handle other languages (you can add more logic here if needed)
+            console.log("Selected language:", selectedLanguage);
+            // Add your logic for other languages here
+        }
+    }
+</script>
+</body>
+</html>

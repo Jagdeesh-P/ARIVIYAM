@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Ariviyam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA); /* Gradient from dark purple to light lavender */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4B0082;
+            color: white; /* Keep header text white */
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            position: sticky; /* Make header sticky */
+            top: 0; /* Stick to the top */
+            z-index: 1000; /* Ensure it stays on top of other content */
+        }
+
+        .container {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            padding: 50px 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1500px;
+            margin: 30px 0;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: white; /* Change heading color to white */
+            font-size: 1.8rem;
+            padding-bottom: 10px; /* Remove bottom border */
+        }
+
+        .profile-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-info {
+            width: 65%;
+        }
+
+        .profile-info p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: wheat;
+        }
+
+        .profile-info p strong {
+            color: white; /* Change strong text color to white */
+        }
+
+        .profile-picture {
+            width: 30%;
+            text-align: center;
+        }
+
+        .profile-picture img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-edit, .btn-download {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-edit:hover, .btn-download:hover {
+            background-color: #E64A19;
+        }
+
+        .courses-section, .certifications-section {
+            margin-top: 30px;
+        }
+
+        .courses-section h2, .certifications-section h2 {
+            margin-bottom: 15px;
+            color: white; /* Change section heading color to white */
+            font-size: 1.6rem;
+            padding-bottom: 10px; /* Remove bottom border */
+        }
+
+        .course-card, .certification-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .course-card img, .certification-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .course-details, .certification-details {
+            color: #333;
+        }
+
+        .course-details h3, .certification-details h3 {
+            margin-bottom: 5px;
+            color: purple; /* Change course and certification title color to white */
+            font-size: 1.3rem;
+        }
+
+        .course-details p, .certification-details p {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Style for the bottom border */
+        .border-bottom {
+            border-bottom: 2px solid #ddd; /* Grey line below the section */
+            padding-bottom: 10px; /* Space below the border */
+            margin-bottom: 20px; /* Space after the border */
+        }
+    </style>
+    {% load static %}
+</head>
+<body>
+
+    <header>
+        <h1>ARIVIYAM - User Profile</h1>
+    </header>
+
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-info">
+                <h2 class="border-bottom">Personal Information</h2> <!-- Added border-bottom class -->
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> john@example.com</p>
+                <p><strong>Joined:</strong> January 2024</p>
+                <p><strong>Date of Birth:</strong> 14 January 2004</p>
+                <button class="btn-edit">Edit Profile</button>
+            </div>
+            <div class="profile-picture">
+                <h3>Profile Picture</h3>
+                <img src="{% static 'profile-pic.jpg' %}" alt="Profile Picture">
+            </div>
+        </div>
+
+        <div class="courses-section">
+            <h2>My Courses</h2>
+
+            <!-- Course Card 1 -->
+            <div class="course-card">
+                <img src="{% static 'course.png' %}" alt="Course1">
+                <div class="course-details">
+                    <h3>Introduction to Python Programming</h3>
+                    <p>This course covers the fundamentals of programming in Python, focusing on building strong foundations for beginners.</p>
+                    <p><strong>Status:</strong> Completed</p>
+                </div>
+            </div>
+
+            <!-- Course Card 2 -->
+            <div class="course-card">
+                <img src="{% static 'course-img2.jpg' %}" alt="Course 2">
+                <div class="course-details">
+                    <h3>Machine Learning and Algorithms</h3>
+                    <p>An advanced data science course that dives into machine learning algorithms and their applications in real-world projects.</p>
+                    <p><strong>Status:</strong> In Progress</p>
+                </div>
+            </div>
+
+            <!-- Course Card 3 -->
+            <div class="course-card">
+                <img src="{% static 'course-img3.jpg' %}" alt="Course 3">
+                <div class="course-details">
+                    <h3>Web Development</h3>
+                    <p>This introductory course explores the basics of web development, covering HTML, CSS, and JavaScript for building responsive websites.</p>
+                    <p><strong>Status:</strong> Not Started</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="certifications-section">
+            <h2>Certifications</h2>
+
+            <!-- Certification Card 1 -->
+            <div class="certification-card">
+                <img src="{% static 'certificate.jpg' %}" alt="Certificate 1">
+                <div class="certification-details">
+                    <h3>Certificate in Python Programming</h3>
+                    <p>This certificate validates your proficiency in Python programming, covering fundamental concepts and applications.</p>
+                    <button class="btn-download">Download Certificate</button>
+                </div>
+            </div>
+
+            <!-- Certification Card 2 -->
+            <div class="certification-card">
+                <img src="{% static 'certificate.jpg' %}" alt="Certificate 2">
+                <div class="certification-details">
+                    <h3>Certificate in Data Science</h3>
+                    <p>This certificate demonstrates your skills in data analysis, machine learning, and statistical techniques.</p>
+                    <button class="btn-download">Download Certificate</button>
+                </div>
+            </div>
+
+            <!-- Certification Card 3 -->
+            <div class="certification-card">
+                <img src="{% static 'certificate.jpg' %}" alt="Certificate 3">
+                <div class="certification-details">
+                    <h3>Certificate in Web Development</h3>
+                    <p>This certificate showcases your expertise in web technologies including HTML, CSS, and JavaScript.</p>
+                    <button class="btn-download">Download Certificate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ariviyam. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

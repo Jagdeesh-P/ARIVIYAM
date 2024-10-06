@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>பாடம் - EdTech தளம்</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            flex: 1;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 3;
+        }
+
+        .notes {
+            flex: 1;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-left: 20px;
+            height: 400px;
+            width: 300px;
+            overflow-y: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .notes h3 {
+            color: #4B0082;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #4B0082;
+            padding-bottom: 10px;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #4B0082;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .video-container {
+            margin: 20px 0;
+            padding: 10px 10px;
+        }
+
+        .video-description {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            font-weight: 400;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+        }
+
+        .next-video-links {
+            margin-top: 20px;
+        }
+
+        .next-video-links a,
+        .reference-book a {
+            display: block;
+            color: #4B0082;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .next-video-links a:hover,
+        .reference-book a:hover {
+            text-decoration: underline;
+            background-color: #E1BEE7;
+            color: #4B0082;
+        }
+
+        .reference-book {
+            margin-top: 40px;
+        }
+
+        .back-button,
+        .btn-test {
+            background: linear-gradient(90deg, #6A0DAD, #9B59B6); /* Brighter gradient background */
+            color: white; /* Text color */
+            text-align: center; /* Centered text */
+            width: fit-content; /* Adjust button width */
+            margin: 10px 0; /* Space around the button */
+            padding: 12px 18px; /* Padding for button */
+            border: 2px solid #9B59B6; /* Add a border for better visibility */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 1rem; /* Font size */
+            font-weight: bold; /* Bold text */
+            transition: background 0.3s, transform 0.2s; /* Transition for hover effects */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>பாடம் 1</h1>
+    </header>
+    <main class="container">
+        <div class="content">
+            <h2>பைதான் நிரலாக்கத்தின் முக்கிய கருத்துக்கள்</h2>
+
+            <div class="video-container">
+                <video controls width="60%">
+                    <source src="V in py.mp4" type="video/mp4">
+                    உங்கள் உலாவியில் வீடியோ குறிச்சொல்லை ஆதரிக்கவில்லை.
+                </video>
+            </div>
+
+            <h3>வீடியோ விளக்கம்</h3>
+            <div class="video-description">
+                <p>இந்த பாடம், பலவகைபடுத்தப்பட்ட நிரலாக்க மொழியான பைதானைப் பற்றி கற்றுக்கொள்கிறது. நீங்கள் ஆராயக் கூடிய முக்கிய கருத்துக்கள்:</p>
+                <ul>
+                    <li>தரவை மற்றும் மாறிகள்</li>
+                    <li>கட்டுப்பாட்டு அமைப்புகள் (if வாக்கியங்கள், மடல்கள்)</li>
+                    <li>செயல்பாடுகள் மற்றும் தொகுப்புகள்</li>
+                    <li>தரவை அமைப்புகள் (பட்டியல்கள், அகராதிகள்)</li>
+                    <li>கோப்புகளை கையாளுதல் மற்றும் தவறுகள்</li>
+                </ul>
+                <p>இந்த பாடத்தை முடித்தால், பைதானின் அடிப்படையான புரிதலைக் கொள்ளலாம் மற்றும் அடிப்படை ஸ்கிரிப்டுகளை எழுதலாம்.</p>
+            </div>
+
+            <div class="next-video-links">
+                <h3>அடுத்த வீடியோக்கள்</h3>
+                <a href="next-lesson-2.html">தரவை மற்றும் அல்கொரிதம்: பாடம் 2</a>
+                <a href="next-lesson-3.html">உருப்படியான செயல்முறை: பாடம் 3</a>
+                <a href="test.html" class="btn-test">சோதனை எடு</a> <!-- Quiz button -->
+            </div>
+
+            <h3 class="reference-book">குறிப்பு புத்தகம்</h3>
+            <a href="https://example.com/reference-book"><br>"Python Programming: கணினி அறிவுக்கு ஒரு அறிமுகம்"</a>
+            <a href="lesson.html" class="back-button">முன்  பக்கம்</a> <!-- Back Button -->
+        </div>
+
+        <div class="notes">
+            <h3>உங்கள் குறிப்புகள்</h3>
+            <textarea rows="20" style="width: 100%; border: none; border-radius: 5px; padding: 10px; resize: none; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);" placeholder="இங்கே உங்கள் குறிப்புகளை எடுக்கவும்..."></textarea>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 EdTech தளம்</p>
+    </footer>
+</body>
+</html>

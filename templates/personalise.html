@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalization - Ariviyam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #4B0082, #FFFFFF);
+            padding: 20px;
+        }
+
+        header {
+            background-color: #4B0082;
+            padding: 20px 250px;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .personalization-form {
+            background-color: white;
+            padding: 40px; /* Increased padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1250px; /* Increased max-width */
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px; /* Adjusted margin */
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px; /* Adjusted gap between radio buttons */
+            margin-top: 5px; /* Optional: adds spacing above radio buttons */
+        }
+
+        .submit-btn {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Personalize Your Learning Experience</h1>
+    </header>
+
+    <div class="personalization-form">
+        <form id="personalizationForm">
+            <!-- User Type Section -->
+            <div class="form-group">
+                <label for="userType">Select Your User Type:</label>
+                <select id="userType" name="userType" required>
+                    <option value="">-- Select User Type --</option>
+                    <option value="higher_secondary">Higher Secondary Students</option>
+                    <option value="university">University Students</option>
+                    <option value="working_professional">Working Professional</option>
+                </select>
+            </div>
+
+            <div id="additionalInfo"></div>
+
+            <!-- Disability Section -->
+            <div class="form-group">
+                <label>Do you have any special needs?</label>
+                <div class="radio-group">
+                    <input type="radio" id="disabilityYes" name="disability" value="yes" onclick="toggleDisabilityInput()">
+                    <label for="disabilityYes">Yes</label>
+                    <input type="radio" id="disabilityNo" name="disability" value="no" onclick="toggleDisabilityInput()" checked>
+                    <label for="disabilityNo">No</label>
+                </div>
+            </div>
+
+            <div class="form-group" id="disabilityDetail" style="display: none;">
+                <label for="disabilityType">Please specify your disability:</label>
+                <input type="text" id="disabilityType" name="disabilityType">
+            </div>
+
+            <!-- Average Usage Section -->
+            <div class="form-group">
+                <label for="avgUsage">Average usage of platform per day (in hours):</label>
+                <input type="text" id="avgUsage" name="avgUsage" required>
+            </div>
+
+            <!-- Interested Topics Section -->
+            <div class="form-group">
+                <label for="interestedTopics">Interested Topics:</label>
+                <textarea id="interestedTopics" name="interestedTopics" rows="4"></textarea>
+            </div>
+
+            <!-- Learning Preference Section -->
+            <div class="form-group">
+                <label>Do you prefer to learn alone or in a group?</label>
+                <div class="radio-group">
+                    <input type="radio" id="learnAlone" name="learningPreference" value="alone" required>
+                    <label for="learnAlone">Alone</label>
+                    <input type="radio" id="learnGroup" name="learningPreference" value="group" required>
+                    <label for="learnGroup">In a Group</label>
+                </div>
+            </div>
+
+            <!-- Goal Setting Section -->
+            <div class="form-group">
+                <label for="goals">Set your learning goals:</label>
+                <textarea id="goals" name="goals" rows="4"></textarea>
+            </div>
+
+           <button type="button" class="submit-btn" onclick="window.location.href= {% url 'home' %}">Submit</button>
+
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ariviyam. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const userType = document.getElementById('userType');
+        const additionalInfo = document.getElementById('additionalInfo');
+
+        userType.addEventListener('change', function () {
+            let userTypeValue = this.value;
+
+            // Clear previous content
+            additionalInfo.innerHTML = '';
+
+            if (userTypeValue === 'higher_secondary') {
+                additionalInfo.innerHTML = `
+                    <div class="form-group">
+                        <label for="grade">Please specify your grade:</label>
+                        <input type="text" id="grade" name="grade" required>
+                    </div>`;
+            } else if (userTypeValue === 'university') {
+                additionalInfo.innerHTML = `
+                    <div class="form-group">
+                        <label for="branch">Please specify your branch:</label>
+                        <input type="text" id="branch" name="branch" required>
+                    </div>`;
+            } else if (userTypeValue === 'working_professional') {
+                additionalInfo.innerHTML = `
+                    <div class="form-group">
+                        <label for="industry">Please specify your industry:</label>
+                        <input type="text" id="industry" name="industry" required>
+                    </div>`;
+            }
+        });
+
+        function toggleDisabilityInput() {
+            const disabilityDetail = document.getElementById('disabilityDetail');
+            const disabilityYes = document.getElementById('disabilityYes');
+
+            if (disabilityYes.checked) {
+                disabilityDetail.style.display = 'block';
+            } else {
+                disabilityDetail.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - EdTech Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .search-container {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-button:hover {
+            background-color: #E64A19;
+        }
+
+        main {
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1500px;
+            margin: 30px 0;
+        }
+
+        h2 {
+            color: #4B0082;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .course-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(30% - 30px);
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .course-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .course-card h5 {
+            color: #4B0082;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-learn-more {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-learn-more:hover {
+            background-color: #E64A19;
+        }
+
+        footer {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+    <script>
+        function searchCourses() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const courseCards = document.querySelectorAll('.course-card');
+
+            courseCards.forEach(card => {
+                const title = card.querySelector('h5').innerText.toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Available Courses</h1>
+    </header>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search for courses...">
+        <button class="search-button" onclick="searchCourses()">Search</button>
+    </div>
+    <main>
+        <h2>Browse Our Courses</h2>
+        <div class="row">
+            <div class="course-card">
+                <img src="{% static 'python.jpg' %}" alt="Introduction to Python Programming">
+                <h5>Introduction to Python Programming</h5>
+                <p>Dive into the world of programming with Python.<br>
+                   Learn the fundamentals, including variables, loops, and functions.<br>
+                   This course is designed for beginners with no prior coding experience.<br>
+                   By the end, you'll be able to write simple Python scripts and solve problems.</p>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'datascience.jpg' %}" alt="Data Science Essentials">
+                <h5>Data Science Essentials</h5>
+                <p>Discover the key concepts in data science and analytics.<br>
+                   Explore data visualization, statistical analysis, and machine learning.<br>
+                   This course covers essential tools like Pandas, NumPy, and Matplotlib.<br>
+                   Equip yourself with the skills to analyze real-world data effectively.</p>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'web.jpg' %}" alt="Web Development Bootcamp">
+                <h5>Web Development Bootcamp</h5>
+                <p>Build dynamic websites using HTML, CSS, and JavaScript.<br>
+                   Learn responsive design and how to create interactive web applications.<br>
+                   This hands-on course emphasizes practical projects and collaboration.<br>
+                   Perfect for anyone looking to start a career in web development.</p>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'ML.jpg' %}" alt="Machine Learning Fundamentals">
+                <h5>Machine Learning Fundamentals</h5>
+                <p>Learn the basics of machine learning and its applications.<br>
+                   Understand supervised and unsupervised learning techniques.<br>
+                   This course includes hands-on exercises with popular ML libraries.<br>
+                   Prepare for advanced topics in AI and data science.</p>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'cy.jpg' %}" alt="Cybersecurity Basics">
+                <h5>Cybersecurity Basics</h5>
+                <p>Understand the key concepts of cybersecurity.<br>
+                   Learn about common threats, vulnerabilities, and protective measures.<br>
+                   This course provides insights into securing networks and data.<br>
+                   Suitable for beginners interested in the field of cybersecurity.</p>
+                <b>(A.I Generated Course)</b>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'deeplean.jpg' %}" alt="Deep Learning Algorithms">
+                <h5>Deep Learning Algorithms</h5>
+                <p>Delve into various deep learning algorithms.<br>
+                   Explore classification, multilayer feed-forward neural networks, and clustering techniques.<br>
+                   Gain hands-on experience with popular algorithms like decision trees and SVMs.<br>
+                   Enhance your problem-solving skills with practical applications.</p>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'dsa.jpg' %}" alt="Data Structures and Algorithms">
+                <h5>Data Structures and Algorithms</h5>
+                <p>Learn about essential data structures like arrays, stacks, queues, and trees.<br>
+                   Understand algorithmic techniques for sorting and searching.<br>
+                   This course prepares you for coding interviews and competitive programming.<br>
+                   Improve your coding efficiency and problem-solving capabilities.</p>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'java.jpg' %}" alt="Java Programming Fundamentals">
+                <h5>Java Programming Fundamentals</h5>
+                <p>Get introduced to Java, one of the most popular programming languages.<br>
+                   Learn object-oriented programming concepts and syntax.<br>
+                   This course includes hands-on coding exercises to build real-world applications.<br>
+                   Suitable for both beginners and those looking to refresh their Java skills.</p>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="course-card">
+                <img src="{% static 'cpp.jpg' %}" alt="C++ Programming Fundamentals">
+                <h5>C++ Programming Fundamentals</h5>
+                <p>Discover the fundamentals of C++, a widely used programming language.<br>
+                   Learn about basic syntax, control structures, and object-oriented programming.<br>
+                   This course includes practical coding exercises to reinforce learning.<br>
+                   Ideal for those looking to enhance their programming skills.</p>
+                <b>(A.I Generated Course)</b>
+                <a href="{% url 'course_details' %}" class="btn-learn-more">Learn More</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Ariviyam. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+</html>

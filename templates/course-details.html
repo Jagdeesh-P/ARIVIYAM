@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - EdTech Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        main {
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Changed to take full width */
+            margin: 30px 0;
+        }
+
+        h2 {
+            color: #4B0082;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4B0082; /* Added border under the title */
+            padding-bottom: 10px; /* Added padding for spacing */
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 10px 0 20px 0;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 5px 0;
+        }
+
+        .btn-enroll {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-enroll:hover {
+            background-color: #E64A19;
+        }
+
+        footer {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* New styles for course description */
+        .course-description {
+            background-color: #F0F8FF; /* Light background color */
+            border-left: 5px solid #4B0082; /* Accent color on the left */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin-bottom: 20px; /* Space below description */
+            line-height: 1.6; /* Improved line spacing */
+        }
+
+        .course-description p {
+            color: #333; /* Text color */
+            font-size: 1rem; /* Font size */
+        }
+
+        /* Image styles */
+        .course-image {
+            width: 250px; /* Reduced width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Rounded corners */
+            margin-bottom: 20px; /* Space below image */
+            display: block; /* Block-level element */
+            margin-left: auto; /* Center the image */
+            margin-right: auto; /* Center the image */
+        }
+
+        /* Link styles for lessons and projects */
+        a {
+            text-decoration: none; /* Remove underline */
+            color: #4B0082; /* Link color */
+            font-weight: bold; /* Bold font */
+            transition: color 0.3s; /* Smooth transition */
+        }
+
+        a:hover {
+            color: #E64A19; /* Color change on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Course Details</h1>
+    </header>
+
+    <!-- Course 1: Introduction to Python Programming -->
+    <main>
+        <header>
+            <h1>Introduction to Python Programming</h1>
+        </header>
+        <img src="{% static 'python.jpg' %}" alt="Python Programming" class="course-image">
+        <h2><br>Course Description</h2>
+        <div class="course-description">
+            <p>This course provides a comprehensive introduction to Python programming. You will learn how to write Python scripts, work with data structures, and use libraries for data analysis. With hands-on projects and practical examples, you'll develop the skills necessary to tackle real-world problems. Ideal for beginners, this course prepares you for further studies in data science and software development. By the end of the course, you will have a strong foundation in Python that will enable you to build your own applications and solve complex challenges.</p>
+        </div>
+
+        <h3>Lessons</h3>
+        <ul>
+            <li><a href="lesson1.html">Lesson 1: Getting Started with Python</a></li>
+            <li><a href="lesson2.html">Lesson 2: Control Structures and Functions</a></li>
+        </ul>
+
+        <h3>Projects</h3>
+        <ul>
+            <li><a href="project1.html">Project 1: Building a Simple Calculator</a></li>
+        </ul>
+
+        <a href="{% url 'enroll' %}" class="btn btn-enroll mt-3">Enroll Now</a>
+    </main>
+
+    <!-- Course 2: Data Analysis with Python -->
+    <main>
+        <header>
+            <h1>Data Analysis with Python</h1>
+        </header>
+        <img src="{% static 'datascience.jpg' %}" alt="Data Analysis with Python" class="course-image">
+        <h2><br>Course Description</h2>
+        <div class="course-description">
+            <p>This course dives into data analysis using Python. You will learn how to manipulate data using Pandas, visualize it with Matplotlib, and perform statistical analysis. Through a series of practical exercises, you will gain the confidence to analyze real-world datasets and derive meaningful insights. The course is perfect for those looking to enter the field of data science or enhance their analytical skills. By the end of the course, you will have a solid understanding of data analysis techniques and how to apply them effectively.</p>
+        </div>
+
+        <h3>Lessons</h3>
+        <ul>
+            <li><a href="lesson3.html">Lesson 1: Introduction to Pandas</a></li>
+            <li><a href="lesson4.html">Lesson 2: Data Visualization with Matplotlib</a></li>
+        </ul>
+
+        <h3>Projects</h3>
+        <ul>
+            <li><a href="project2.html">Project 1: Analyzing a Dataset</a></li>
+        </ul>
+
+        <a href="{% url 'enroll' %}" class="btn btn-enroll mt-3">Enroll Now</a>
+    </main>
+
+    <!-- Course 3: Web Development with Flask -->
+    <main>
+        <header>
+            <h1>Web Development with Flask</h1>
+        </header>
+        <img src="{% static 'web.jpg' %}" alt="Web Development with Flask" class="course-image">
+        <h2><br>Course Description</h2>
+        <div class="course-description">
+            <p>This course covers web development using Flask, a popular micro web framework in Python. You will learn how to create dynamic web applications, manage databases, and handle user authentication. Throughout the course, you will build projects that demonstrate the full development cycle from concept to deployment. By the end of the course, you will have the knowledge to build your own web applications from scratch. This course is ideal for anyone interested in pursuing a career in web development or enhancing their programming skills.</p>
+        </div>
+
+        <h3>Lessons</h3>
+        <ul>
+            <li><a href="lesson5.html">Lesson 1: Setting Up Flask</a></li>
+            <li><a href="lesson6.html">Lesson 2: Building RESTful APIs</a></li>
+        </ul>
+
+        <h3>Projects</h3>
+        <ul>
+            <li><a href="project3.html">Project 1: Creating a Simple Blog</a></li>
+        </ul>
+
+       <a href="{% url 'enroll' %}" class="btn btn-enroll mt-3">Enroll Now</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ariviyam. All rights reserved.</p>
+    </footer>
+</body>
+</html>

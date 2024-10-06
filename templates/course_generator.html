@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Course Generator - EdTech Platform</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+        }
+
+        header {
+            background-color: #4B0082; /* Changing header background to match the certificates page */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        main.container {
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Same box-shadow for consistency */
+            margin-top: 30px;
+        }
+
+        h1, h3 {
+            color: white; /* Title and headings match primary color */
+        }
+
+        label {
+            color: #4B0082; /* Form labels updated to match color scheme */
+        }
+
+        .btn-success {
+            background-color: #4B0082; /* Button color changed to purple */
+            border-color: #4B0082;
+        }
+
+        .btn-success:hover {
+            background-color: #E64A19; /* Hover effect similar to certificate download buttons */
+            border-color: #E64A19;
+        }
+
+        footer {
+            background-color: #4B0082;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        /* Explore Courses Box */
+        #explore-courses {
+            background-color: #F0F0F0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #explore-courses h4 {
+            color: #4B0082;
+            margin-bottom: 15px;
+        }
+
+        .btn-explore {
+            background-color: #4B0082;
+            border-color: #4B0082;
+            color: white;
+        }
+
+        .btn-explore:hover {
+            background-color: #E64A19;
+            border-color: #E64A19;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI Course Generator</h1>
+    </header>
+
+    <main class="container my-5">
+        <form id="course-generator-form">
+            <div class="form-group">
+                <label for="topic">Course Topic:</label>
+                <input type="text" class="form-control" id="topic" required>
+            </div>
+            <div class="form-group">
+                <label for="level">Course Level:</label>
+                <select class="form-control" id="level" required>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Generate Course</button>
+        </form>
+
+        <!-- Explore Courses Box -->
+        <div id="explore-courses">
+            <h4>Want to explore some popular AI courses?</h4>
+            <p>Check out our top-rated AI courses designed for different levels. Whether you're a beginner or an advanced learner, we have a course for you. Explore the latest advancements in AI, machine learning, and deep learning now!</p>
+            <button class="btn btn-explore" onclick="window.location.href={% url 'precourses' %}">Explore Courses</button>
+        </div>
+
+        <!-- Generated Course Overview -->
+        <div id="generated-course" class="mt-5" style="display:none;">
+            <h3>Generated Course Overview</h3>
+            <p id="course-description"></p>
+            <button class="btn btn-primary">Enroll Now</button>
+        </div>
+    </main>
+
+    <footer>
+       <p>&copy; 2024 Ariviyam. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- AJAX and Course Generation Logic -->
+    <script>
+        document.getElementById('course-generator-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const topic = document.getElementById('topic').value;
+            const level = document.getElementById('level').value;
+
+            // Determine the number of videos based on the course level
+            let numVideos;
+            if (level === "beginner") {
+                numVideos = 2;
+            } else if (level === "intermediate") {
+                numVideos = 5;
+            } else if (level === "advanced") {
+                numVideos = 10;
+            }
+
+            // Send the data to the server to generate the content
+            fetch('/generate-course/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ topic, level, numVideos })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Display the generated content
+                    document.getElementById('course-description').innerText = data.courseContent;
+                    document.getElementById('generated_course').style.display = 'block';
+                } else {
+                    alert('Error generating course content.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while generating the course.');
+            });
+        });
+    </script>
+</body>
+</html>

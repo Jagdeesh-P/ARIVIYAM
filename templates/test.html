@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #4B0082;
+            padding: 10px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .back-button .back-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile img {
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            height: calc(100vh - 100px); /* Adjusted for full viewport height minus header and footer */
+        }
+
+        .container {
+            width: 100%;
+            height: 95%; /* Take full height of available space */
+            background-color: white;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+        }
+
+        h2 {
+            color: #4B0082;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .btn-submit {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4B0082;
+            color: white;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="back-button">
+            <a href="#" class="back-link">← Back</a>
+        </div>
+        <div class="user-profile">
+            <span>User Name</span>
+            <img src="https://via.placeholder.com/40" alt="User Profile" class="profile-image">
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Answer the following Python 3 questions</h2>
+            <form>
+                <div class="form-group">
+                    <label for="q1">1. What keyword is used to define a function in Python?</label>
+                    <input type="text" id="q1" name="question1" placeholder="Your answer">
+                </div>
+                <div class="form-group">
+                    <label for="q2">2. Fill in the blank: To read input from the user, we use the __ function.</label>
+                    <input type="text" id="q2" name="question2" placeholder="Your answer">
+                </div>
+                <div class="form-group">
+                    <label for="q3">3. In Python, lists are mutable while tuples are __.</label>
+                    <input type="text" id="q3" name="question3" placeholder="Your answer">
+                </div>
+                <div class="form-group">
+                    <label for="q4b">4. Which of the following is a valid variable name in Python?</label>
+                    <div>
+                        <input type="radio" id="q4a" name="question4" value="1Variable">
+                        <label for="q4a">1Variable</label><br>
+                        <input type="radio" id="q4b" name="question4" value="_variable">
+                        <label for="q4b">_variable</label><br>
+                        <input type="radio" id="q4c" name="question4" value="123variable">
+                        <label for="q4c">123variable</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="q5a">5. Which of the following is NOT a Python data type?</label>
+                    <div>
+                        <input type="radio" id="q5a" name="question5" value="List">
+                        <label for="q5a">List</label><br>
+                        <input type="radio" id="q5b" name="question5" value="Dictionary">
+                        <label for="q5b">Dictionary</label><br>
+                        <input type="radio" id="q5c" name="question5" value="Class">
+                        <label for="q5c">Class</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit" onclick="location.href='{% url 'testresult' %}'">Submit Quiz</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ariviyam. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

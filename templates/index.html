@@ -1,0 +1,538 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariviyam - AI Powered Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(to bottom, #4B0082, #E6E6FA); /* Gradient from dark purple to light lavender */
+        }
+
+        header {
+            background-color: #4B0082;
+            padding: 20px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .profile-logout {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            margin-left: auto; /* Pushes the profile section to the right */
+        }
+
+        .profile-icon {
+            width: 40px; /* Set desired width */
+            height: 40px; /* Set desired height */
+            border-radius: 50%; /* Make it circular */
+            margin-right: 10px; /* Space between icon and button */
+        }
+        .menu {
+            margin-left: 400px;
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .profile-icon{
+            padding: 1%;
+        }
+
+        .mic-icon {
+            font-size: 4rem;
+            color: #FF5733;
+            cursor: pointer;
+            margin-left: 1400px;
+            Position: sticky;
+        }
+
+        .listening-indicator {
+            display: none;
+            color: white;
+            background-color: #4B0082;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 1400px;
+            Position: sticky;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            width: 800px;
+        }
+
+        .search-bar button {
+            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FF5733;
+            color: white;
+            cursor: pointer;
+        }
+
+        .header-content {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 50px;
+        }
+
+        .section-content {
+            max-width: 900px;
+        }
+
+        .section-content h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-btn {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .work-together {
+            text-align: center;
+            padding: 50px;
+            background-color: white;
+        }
+
+        /* New section - Customize Roadmap */
+        .customize-roadmap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            background-color: #4B0082;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .customize-roadmap-content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .customize-roadmap h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .customize-roadmap p {
+            margin-bottom: 20px;
+        }
+
+        /* Chatbot Section */
+        .chatbot-btn {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 0px;
+            text-decoration: none;
+        }
+
+        .chatbot-popup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 1001;
+        }
+
+        .chatbot-popup-header {
+            background-color: #4B0082;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .chatbot-popup-body {
+            padding: 10px;
+        }
+
+        .chatbot-popup-body p {
+            margin-bottom: 10px;
+        }
+
+        .close-chatbot {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .personalize-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            text-align: center;
+        }
+
+        .logout-btn {
+            background-color: #FF5733;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .personalize-btn {
+            padding: 10px 20px;
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            width: 300px;
+            margin: 20px;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .main-section,
+            .customize-roadmap {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .customize-roadmap img {
+                max-width: 80%;
+            }
+
+            .search-bar input[type="text"] {
+                width: 150px;
+            }
+
+            .mic-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">ARIVIYAM</div>
+
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="{% url 'community' %}">Community</a></li>
+                <li><a href="{% url 'courses' %}">Courses</a></li>
+                <li><a href="{% url 'analytics' %}">Analytics</a></li>
+                <li><a href="{% url 'settings' %}">Settings</a></li>
+            </ul>
+            <div class="profile-logout">
+                <a href="{% url 'profile' %}">
+                    <img src="{% static 'profile.jpg' %}" alt="Profile" class="profile-icon">
+                </a>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="header-content">
+        <h1>Explore AI-Powered Learning with Ariviyam!</h1>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </div>
+
+    <section class="main-section">
+        <div class="section-content">
+            <h2>Join Our Learning Community</h2>
+            <p>Discover customized learning paths, personalized assessments, and community-based learning experiences. Start your journey now!</p>
+            <a href="{% url 'community' %}">
+                <button class="cta-btn">Try Now</button>
+            </a>
+        </div>
+    </section>
+
+     <i class="mic-icon" onclick="startListening()">🎤</i>
+     <span class="listening-indicator" id="listening-indicator">Listening...</span>
+
+    <div id="overlay" class="overlay" onclick="closePersonalizeBox()"></div>
+    <div id="personalize-box" class="personalize-box">
+        <h3>Personalize Your Learning Experience</h3>
+        <button class="personalize-btn" onclick="redirectToPersonalize()">Personalize</button>
+    </div>
+
+    <script>
+        function redirectToPersonalize() {
+            window.location.href = '{% url "personalise" %}';
+        }
+
+        function closePersonalizeBox() {
+            const overlay = document.getElementById('overlay');
+            const personalizeBox = document.getElementById('personalize-box');
+            overlay.style.display = 'none';
+            personalizeBox.style.display = 'none';
+        }
+    </script>
+
+    <section class="main-section">
+        <div class="section-content">
+            <h2>Try Our Chat-Assistant 'Chatty'</h2>
+            <p>Engage in interactive learning, get instant help, and explore new educational opportunities. Start your journey now!</p>
+            <a href="{% url 'chat_page' %}" class="chatbot-btn">Try Chatty!</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="box">
+            <h3>Top 10 Courses of the Week</h3>
+            <p>Discover the most popular courses this week.</p>
+        </div>
+        <div class="box">
+            <h3>Top 10 Assessments of the Week</h3>
+            <p>Check out the trending assessments for learners.</p>
+        </div>
+        <div class="box">
+            <h3>Highlights About Ariviyam</h3>
+            <p>Explore the key features and benefits of using Ariviyam.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h3>My Courses</h3>
+            <p>View the courses you are currently enrolled in.</p>
+        </div>
+        <div class="box">
+            <h3>Suggested Courses</h3>
+            <p>Get recommendations based on your interests.</p>
+        </div>
+    </div>
+
+    <section class="customize-roadmap">
+        <div class="customize-roadmap-content">
+            <h2>Customize Your Learning Roadmap</h2>
+            <p>Get personalized AI recommendations and build a roadmap tailored to your learning objectives.</p>
+        </div>
+    </section>
+
+    <div id="chatbot-popup" class="chatbot-popup">
+        <div class="chatbot-popup-header">
+            <h3>AI Chatbot</h3>
+        </div>
+        <div class="chatbot-popup-body">
+            <p>Hi there! How can I assist you today?</p>
+        </div>
+        <button class="close-chatbot" onclick="closeChatbot()">Close</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ariviyam. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function logout() {
+            // Clear user session data (example with local storage)
+            localStorage.removeItem('userSession'); // Adjust this based on your session management
+            // Redirect to login page
+            window.location.href = '{% url "login" %}'; // Change to your login page URL
+        }
+
+        function openChatbot() {
+            document.getElementById("chatbot-popup").style.display = "block";
+        }
+
+        function closeChatbot() {
+            document.getElementById("chatbot-popup").style.display = "none";
+        }
+
+        function closePersonalizeBox() {
+            document.getElementById("personalize-box").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        window.onload = function () {
+            document.getElementById("personalize-box").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function redirectToPage(pageName) {
+            switch (pageName) {
+                case 'community':
+                    window.location.href = '{% url "community" %}';
+                    break;
+                case 'courses':
+                    window.location.href = '{% url "courses" %}';
+                    break;
+                case 'settings':
+                    window.location.href = '{% url "settings" %}';
+                    break;
+                case 'projects':
+                    window.location.href = '{% url "projects" %}';
+                    break;
+                case 'profile':
+                    window.location.href = '{% url "profile" %}';
+                    break;
+                case 'course_details':
+                    window.location.href = '{% url "course_details" %}';
+                    break;
+                case 'personalize':
+                    window.location.href = '{% url "personalise" %}';
+                    break;
+                case 'chatbot':
+                    openChatbot();
+                    break;
+                default:
+                    console.log('Invalid page name');
+            }
+        }
+
+        function startListening() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+
+            recognition.onstart = () => {
+                document.getElementById('listening-indicator').style.display = 'inline';
+            };
+
+            recognition.onend = () => {
+                document.getElementById('listening-indicator').style.display = 'none';
+            };
+
+            recognition.onresult = (event) => {
+                const command = event.results[0][0].transcript.toLowerCase();
+                console.log('Voice command:', command);
+                // Map voice command to respective redirections
+                if (command.includes("open community")) {
+                    redirectToPage('community');
+                } else if (command.includes("open courses")) {
+                    redirectToPage('courses');
+                } else if (command.includes("open settings")) {
+                    redirectToPage('settings');
+                } else if (command.includes("open projects")) {
+                    redirectToPage('projects');
+                } else if (command.includes("open profile")) {
+                    redirectToPage('profile');
+                } else if (command.includes("open course details")) {
+                    redirectToPage('course_details');
+                } else if (command.includes("open personalize")) {
+                    redirectToPage('personalize');
+                } else if (command.includes("open chatbot")) {
+                    redirectToPage('chatbot');
+                } else {
+                    console.log('Command not recognized');
+                }
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Error occurred in recognition: ', event.error);
+                document.getElementById('listening-indicator').style.display = 'none';
+            };
+
+            recognition.start();
+        }
+
+    </script>
+</body>
+</html>

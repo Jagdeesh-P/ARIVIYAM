@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll in Course</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+            padding: 0;
+        }
+
+        header {
+            background-color: #4B0082;
+            padding: 20px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            margin-left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4B0082;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .terms {
+            margin-top: 20px;
+        }
+
+        .pricing {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .pricing h3 {
+            color: #4B0082;
+            margin-bottom: 10px;
+        }
+
+        .plan {
+            display: inline-block;
+            width: calc(45% - 20px);
+            margin: 10px;
+            padding: 15px;
+            background-color: white;
+            border: 1px solid #4B0082;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+            vertical-align: top;
+        }
+        .btn {
+            background-color: #4B0082; /* Default background color */
+            color: white; /* Text color */
+            padding: 10px 20px; /* Vertical and horizontal padding */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            display: inline-block; /* Ensure it behaves like a block element */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and scaling */
+        }
+
+        /* Enroll Now Button Specific Styles */
+        .btn-enroll {
+            background-color: #FF5733; /* Specific background color for enroll button */
+        }
+
+        /* Hover Effect for All Buttons */
+        .btn:hover,
+        .btn-enroll:hover {
+            background-color: #FF4500; /* Change background color on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+
+
+        .plan:hover {
+            transform: translateY(-5px);
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">ARIVIYAM</div>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'community' %}">Community</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="{% url 'settings' %}">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="profile-container">
+            <img src="user1.jpg" alt="User Profile" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Enroll in Course: Python Programming Basics</h2>
+
+        <p>Learn the fundamentals of Python programming. This course will take you from beginner to proficient in Python, covering basic syntax, data structures, functions, and more.</p>
+        <p>Duration: 6 weeks</p>
+        <p>Prerequisites: Basic understanding of programming concepts is helpful but not required.</p>
+
+        <div class="pricing">
+            <h3>Pricing Plans</h3>
+            <div class="plan free">
+                <h4>Free Plan</h4>
+                <p>Access to:</p>
+                <ul>
+                    <li>Watch videos</li>
+                    <li>Limited tests</li>
+                    <li>Screen reader support</li>
+                    <li>Sign language support</li>
+                </ul>
+                <p class="price">Price: <strong>Free</strong></p>
+            </div>
+
+            <div class="plan premium">
+                <h4>Premium Plan</h4>
+                <p>Access to:</p>
+                <ul>
+                    <li>All videos</li>
+                    <li>Unlimited tests</li>
+                    <li>Screen reader support</li>
+                    <li>Sign language support</li>
+                    <li>Downloadable materials</li>
+                    <li>Notes tab on screen</li>
+                    <li>Receive reading material</li>
+                    <li>Analysis of performance</li>
+                    <li>Company-related problems</li>
+                    <li>Certificate upon completion</li>
+                </ul>
+                <p class="price">Price: <strong>$49.99</strong></p>
+            </div>
+        </div>
+
+        <form id="enrollment-form">
+            <h3>Enrollment Form</h3>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+
+            <h4>Choose Your Plan</h4>
+            <div class="plan-selection">
+                <input type="radio" id="free" name="plan" value="Free Plan" required>
+                <label for="free">Free Plan</label><br>
+                <input type="radio" id="premium" name="plan" value="Premium Plan" required>
+                <label for="premium">Premium Plan</label>
+            </div>
+
+            <h4>Payment Information</h4>
+            <input type="text" placeholder="Credit Card Number" required>
+            <input type="text" placeholder="Billing Address" required>
+
+            <div class="terms">
+                <input type="checkbox" required> I agree to the <a href="#">terms and conditions</a>.
+            </div>
+
+            <a href="{% url 'lesson' %}" class="btn btn-enroll mt-3">Enroll Now</a>
+
+        </form>
+
+        <div id="faq">
+            <h3>Frequently Asked Questions</h3>
+            <p>What is the duration of the course?</p>
+            <p>This course lasts for 6 weeks, with weekly live sessions and assignments.</p>
+            <p>Are there any prerequisites?</p>
+            <p>While it's helpful to have a basic understanding of programming concepts, it is not required to enroll.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,339 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Hub - Ariviyam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);
+        }
+
+        header {
+            background-color: #4B0082;
+            padding: 20px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between; /* Aligns logo and profile to opposite sides */
+            align-items: center; /* Vertically centers items */
+        }
+
+        .logo {
+            margin-left: 20px; /* Optional: Add left margin */
+            font-size: 24px; /* Optional: Increase font size for logo */
+            font-weight: bold; /* Optional: Make logo bold */
+        }
+
+        nav {
+            flex-grow: 1; /* Allows the nav to take available space */
+        }
+
+        .menu {
+            display: flex; /* Aligns the links horizontally */
+            justify-content: center; /* Centers the links */
+            list-style-type: none; /* Removes default list styling */
+            padding: 0; /* Removes default padding */
+        }
+
+        .menu li {
+            margin: 0 15px; /* Space between the links */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center; /* Center profile image vertically */
+            margin-right: 20px; /* Optional: Add right margin */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #4B0082;
+            text-align: center; /* Center the headings */
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .profile-card img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .events {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap; /* Allow wrapping */
+            margin-top: 20px;
+        }
+
+        .event-container {
+            flex: 1 1 300px; /* Make events responsive with a minimum width */
+            margin: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .discussion {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e9ecef; /* Grey background for the discussion forum */
+        }
+
+        .currently-discussing {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd; /* Add a border around the container */
+            border-radius: 5px;
+            background-color: white; /* Background color for the container */
+        }
+
+        .discussion-thread {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white; /* White background for each thread */
+        }
+
+        .comment-form {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .comment-form input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .comment-form button {
+            padding: 10px;
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .upload-form input[type="text"],
+        .upload-form input[type="file"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .upload-form button {
+            padding: 10px;
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comment {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .comment img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .currently-discussing ul {
+            list-style-type: none; /* Removes the bullets */
+            padding: 0; /* Removes default padding */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">ARIVIYAM</div>
+        <nav>
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="{% url 'community' %}">Community</a></li>
+                <li><a href="{% url 'courses' %}">Courses</a></li>
+                <li><a href="{% url 'settings' %}">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="profile-container">
+            <img src="user1.jpg" alt="User Profile" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="section" id="introduction">
+            <h2>Welcome to the Python Developer Community</h2>
+            <p style="text-align: center;">Join like-minded Python developers, share resources, ask questions, and collaborate on learning projects.</p>
+        </section>
+
+        <section class="section" id="currently-discussing">
+            <h2>Currently Discussing Topics</h2>
+            <div class="currently-discussing">
+                <ul>
+                    <li>How to improve my programming skills?</li>
+                    <li>Best practices for studying Python</li>
+                    <li>Creating a Python project from scratch</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="discussion-forums">
+            <h2>Discussion Forums</h2>
+            <div class="discussion">
+                <h3>Ongoing Discussions</h3>
+
+                <div class="discussion-thread">
+                    <h4>How to improve my programming skills?</h4>
+                    <div class="comment">
+                        <img src="{% static 'user1.jpg' %}" alt="User 1">
+                        <p><strong>John Doe:</strong> I've been struggling with this for a while. Any tips?</p>
+                    </div>
+                    <div class="comment">
+                        <img src="{% static 'user1.jpg' %}" alt="User 2">
+                        <p><strong>Jane Smith:</strong> I recommend starting with small projects. It really helps!</p>
+                    </div>
+                </div>
+
+                <div class="discussion-thread">
+                    <h4>Best practices for studying Python</h4>
+                    <div class="comment">
+                        <img src="{% static 'user1.jpg' %}" alt="User 3">
+                        <p><strong>Emily Johnson:</strong> I find visual aids really help me. What do others think?</p>
+                    </div>
+                    <div class="comment">
+                        <img src="{% static 'user1.jpg' %}" alt="User 4">
+                        <p><strong>Michael Brown:</strong> Flashcards work well for me!</p>
+                    </div>
+                </div>
+
+                <div class="comment-form">
+                    <input type="text" placeholder="Add a comment..." required>
+                    <button type="submit">Comment</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="user-profiles">
+            <h2>User Profiles</h2>
+            <div class="profile-card">
+                <img src="{% static 'user1.jpg' %}" alt="User 1">
+                <div>
+                    <h3>John Doe</h3>
+                    <p>AI Enthusiast | Python Developer</p>
+                </div>
+            </div>
+            <div class="profile-card">
+                <img src="{% static 'user1.jpg' %}" alt="User 2">
+                <div>
+                    <h3>Jane Smith</h3>
+                    <p>Data Scientist | Python Lover</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="events">
+            <h2>Upcoming Events</h2>
+            <div class="events">
+                <div class="event-container">
+                    <h3>Python Workshop</h3>
+                    <p>Date: <strong>Oct 10</strong></p>
+                </div>
+                <div class="event-container">
+                    <h3>Python Hackathon</h3>
+                    <p>Date: <strong>Oct 12</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="resources">
+            <h2>Resource Upload</h2>
+            <p>Share your resources with the community:</p>
+            <form class="upload-form">
+                <input type="text" placeholder="Resource Title" required>
+                <input type="file" required>
+                <button type="submit">Upload</button>
+            </form>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ariviyam Community Hub. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

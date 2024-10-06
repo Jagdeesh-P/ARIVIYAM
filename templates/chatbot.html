@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: linear-gradient(135deg, #A56EFF, #734DF9); /* Purple gradient */
+        }
+
+        .chat-container {
+            background-color: #fff;
+            width: 100%;  /* Chatbox now occupies the entire width */
+            height: 100%; /* Takes up the full page height */
+            border-radius: 0px; /* Removes border radius for full-page look */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Keeps the subtle shadow */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Intro screen */
+        .intro-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+            background-color: #734DF9;
+        }
+
+        .intro-screen h1 {
+            color: #fff;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .intro-screen p {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .intro-screen button {
+            padding: 15px 40px;
+            font-size: 24px;
+            border: none;
+            border-radius: 30px;
+            background-color: #fff;
+            color: #7047E5;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .intro-screen button:hover {
+            background-color: #7047E5;
+            color: #fff;
+        }
+
+        /* Chat screen */
+        .chat-screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-header {
+            background-color: #7047E5;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Position relative for absolute positioning of back link */
+        }
+
+        .chat-header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            position: absolute; /* Position absolute to move to the left */
+            left: 20px; /* Distance from the left */
+            top: 20px; /* Distance from the top */
+        }
+
+        .chat-header h2 {
+            margin: 0;
+            font-size: 36px;
+            display: inline; /* Keep it in line with the back link */
+            margin-left: 60px; /* Margin to separate from the back link */
+        }
+
+        .chat-messages {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #f7f7f7;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            max-width: 100%; /* Limit max-width for better alignment */
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            line-height: 1.5; /* Increase line height for better readability */
+        }
+
+        .user-message {
+            background-color: #7047E5;
+            color: #fff;
+            align-self: flex-end;
+            text-align: right; /* Align text to the right */
+            flex-direction: row-reverse; /* Reverse direction for user message */
+        }
+
+        .bot-message {
+            background-color: #f0f0f0;
+            color: #333;
+            align-self: flex-start;
+            display: flex; /* Make bot message a flex container */
+            align-items: center; /* Align items vertically */
+            flex-direction: row; /* Default direction for bot message */
+        }
+
+        .bot-message img,
+        .user-message img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .chat-input input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 18px;
+            background-color: #f0f0f0;
+        }
+
+        .chat-input button {
+            background-color: #7047E5;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background-color: #5934b7;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Intro Screen -->
+        <div class="intro-screen" id="introScreen">
+            <h1>Hello, I'm Chatty</h1>
+            <p>How can I help you?</p>
+            <button onclick="showChatScreen()">I want to know</button>
+        </div>
+
+        <!-- Chat Screen -->
+        <div class="chat-screen" id="chatScreen">
+            <div class="chat-header">
+                <a href="{% url 'home' %}">&#8592; Back</a>
+                <h2>Chatty</h2>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Bot greeting message with image -->
+                <div class="message bot-message">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="Bot">
+                    <p>How may I help you?</p>
+                </div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type a message..." onkeydown="checkEnter(event)">
+                <button id="sendButton" onclick="sendMessage()">&#9658;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showChatScreen() {
+            document.getElementById("introScreen").style.display = "none";
+            document.getElementById("chatScreen").style.display = "flex";
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value;
+            if (userInput.trim() === "") return; // Prevent sending empty messages
+
+            const chatMessages = document.getElementById("chatMessages");
+
+            // Display user's message
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.classList.add("message", "user-message");
+            const userLogo = document.createElement("img");
+            userLogo.src = "https://static.vecteezy.com/system/resources/previews/032/310/855/non_2x/link-user-icon-in-trendy-outline-style-isolated-on-white-background-link-user-silhouette-symbol-for-your-website-design-logo-app-ui-illustration-eps10-free-vector.jpg"; // User logo
+            userMessageDiv.appendChild(userLogo);
+            userMessageDiv.appendChild(document.createTextNode(userInput));
+            chatMessages.appendChild(userMessageDiv);
+
+            // Send message to Django backend (views.py) using AJAX
+            fetch("/send-message/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({ message: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botMessageDiv = document.createElement("div");
+                botMessageDiv.classList.add("message", "bot-message");
+                const botLogo = document.createElement("img");
+                botLogo.src = "https://cdn-icons-png.flaticon.com/512/4712/4712027.png"; // Bot logo
+                botMessageDiv.appendChild(botLogo);
+
+                // Bot message response from API
+                const p = document.createElement("p");
+                // Convert **bold** to <strong>bold</strong>
+                const messageText = data.response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                p.innerHTML = messageText; // Using innerHTML to render HTML
+                botMessageDiv.appendChild(p);
+                chatMessages.appendChild(botMessageDiv);
+
+                // Scroll to the bottom of the chat
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Clear the user input
+                document.getElementById("userInput").value = "";
+            });
+        }
+    </script>
+</body>
+</html>

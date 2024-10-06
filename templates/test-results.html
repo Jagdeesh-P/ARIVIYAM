@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results of Python Quiz - EdTech Platform</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #4B0082, #E6E6FA);/* Light background for the body */
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background-color: #4B0082; /* Purple background */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        main {
+            max-width: 800px; /* Maximum width for main content */
+            margin: 40px auto; /* Center the main content */
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+
+        h2 {
+            color: #4B0082; /* Matching title color */
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #4B0082; /* Purple footer */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative; /* Position relative for footer */
+        }
+
+        .btn-primary {
+            background-color: #4B0082; /* Matching button color */
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #3e006e; /* Darker purple on hover */
+        }
+
+        .circle {
+            width: 80px; /* Width of the circle */
+            height: 80px; /* Height of the circle */
+            background-color: #4B0082; /* Circle background color */
+            color: darkgoldenrod; /* Dark yellow for text */
+            border-radius: 50%; /* Make it a circle */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            font-size: 24px; /* Font size */
+            margin: 20px auto; /* Center the circle */
+            text-align: center; /* Center text inside */
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Results of Python 3 Quiz</h1>
+    </header>
+    <main>
+        <h2>Your Results</h2>
+        <div class="circle">
+            <span id="score">3/5</span>
+        </div>
+        <h3>Feedback</h3>
+        
+        <div class="feedback">
+            <p>1. What keyword is used to define a function in Python? <br> 
+               Feedback: Functions are fundamental in Python for code reusability and modular programming.</p>
+
+            <p>2. Fill in the blank: To read input from the user, we use the __ function. <br> 
+               Feedback: User input is crucial for interactive programs; the "input" function is key!</p>
+        </div>
+
+        <button class="btn btn-primary" onclick="retakeQuiz()">Retake Quiz</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 EdTech Platform</p>
+    </footer>
+
+    <script>
+        // Function to retake the quiz
+        function retakeQuiz() {
+            // Redirect to quiz page (update the URL as needed)
+            window.location.href = "quiz.html"; // Change this to your quiz page URL
+        }
+    </script>
+</body>
+</html>
